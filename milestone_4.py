@@ -1,4 +1,6 @@
 import random 
+from pprint import pprint
+
 
 class Hangman: 
     def __init__(self, word_list, num_lives = 5):
@@ -11,33 +13,37 @@ class Hangman:
         self.num_letters = 0 
         self.list_of_guesses = []
     
-def check_guess(guess):
-    guess = guess.lower()
-    if guess in word: 
-        print("Good guess! {guess} is in the word.")
-    else: 
-        print()
-    
-def ask_for_input(): 
-    while True: 
-        guess = input('Guess a letter:')
-        if guess.isalpha() == False:
-            print("That's not a single letter, please enter a letter") 
-        elif guess in list_of_guesses:
-            print("You've already tried that letter!")
-        else:
-            check_guess(guess)
-            list_of_guesses.append(guess)
+    def check_guess(self, guess):
+        guess = guess.lower()
+        for letter in range(0, len(self.word)): 
+            if guess == self.word[letter]:
+                print(f"Good guess! {guess} is in the word.")
+                self.word_guessed[letter] = guess  
+                print(self.word_guessed)
+        else: 
+            print(f"Sorry, {guess} is not in the word.")
+            self.num_lives -= 1 
+            print(f"You have {self.num_lives} lives left.") 
 
-word = 'cat' 
-list_of_guesses = []
-ask_for_input()
+        self.num_letters -= 1 
+
+    def ask_for_input(self): 
+        while True: 
+            guess = input('Guess a letter:')
+            if guess.isalpha() == False:
+                print("That's not a single letter, please enter a letter") 
+            elif guess in self.list_of_guesses:
+                print("You've already tried that letter!")
+            else:
+                self.check_guess(guess)
+                self.list_of_guesses.append(guess)
 
 
+#hangman = Hangman(word_list = 'cat car', num_lives = 5)
+hangman = Hangman('car')
+hangman.ask_for_input()
 
-
-
-
+#pprint(vars(hangman))
 
 """
 
@@ -46,3 +52,17 @@ word_guessed = []
             word_guessed.append('_')
         
 """
+
+ #if guess in word: 
+    #    print("Good guess! {guess} is in the word.")
+    #    for letter in word: 
+    #        if letter == guess: 
+    #            word_guessed letter = letter
+
+
+
+#num_lives = 5 
+#word_guessed = ['_', '_', '_'] 
+#word = 'cat' 
+#list_of_guesses = []
+#num_letters = 3 
