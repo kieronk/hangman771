@@ -20,11 +20,11 @@ class Hangman:
                 self.word_guessed[letter] = guess  
                 print(self.word_guessed)
 
-            else: 
+        if guess not in self.word: 
                 print(f"Sorry, {guess} is not in the word.")
                 self.num_lives -= 1 
                 print(f"You have {self.num_lives} lives left.") 
-        self.num_letters -= 1 
+        #self.num_letters -= 1 
 
     def ask_for_input(self): 
         while True: 
@@ -38,6 +38,7 @@ class Hangman:
                 self.list_of_guesses.append(guess)
 
 
+#hangman = Hangman(word_list = 'cat car', num_lives = 5)
 hangman = Hangman('car fish')
 pprint(vars(hangman))
 
