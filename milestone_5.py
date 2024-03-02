@@ -1,3 +1,5 @@
+
+
 import random 
 from pprint import pprint
 
@@ -39,30 +41,22 @@ class Hangman:
 
 
 #hangman = Hangman(word_list = 'cat car', num_lives = 5)
-hangman = Hangman('car fish')
-pprint(vars(hangman))
+#hangman = Hangman('car fish')
+#pprint(vars(hangman))
 
-hangman.ask_for_input()
-
-
-"""
-
-word_guessed = []
-        for letter in word: 
-            word_guessed.append('_')
-        
-"""
-
- #if guess in word: 
-    #    print("Good guess! {guess} is in the word.")
-    #    for letter in word: 
-    #        if letter == guess: 
-    #            word_guessed letter = letter
+#hangman.ask_for_input()
 
 
+def play_game(word_list): 
+    num_lives = 5
+    game = Hangman 
+    game = game(word_list, num_lives)
+    while True: 
+        if num_lives == 0: 
+            print('You lost')
+        if num_letters > 0: 
+            ask_for_input()
+        if num_lives != 0 and num_letters == 0:
+            print('You have won the game!') 
 
-#num_lives = 5 
-#word_guessed = ['_', '_', '_'] 
-#word = 'cat' 
-#list_of_guesses = []
-#num_letters = 3 
+play_game('car fish') 
