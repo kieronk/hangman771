@@ -1,5 +1,3 @@
-
-
 import random 
 from pprint import pprint
 
@@ -11,7 +9,7 @@ class Hangman:
         self.word_guessed = []
         for letter in self.word: 
             self.word_guessed.append('_')
-        self.num_letters = 0 
+        self.num_letters = len(self.word)
         self.list_of_guesses = []
     
     def check_guess(self, guess):
@@ -21,13 +19,14 @@ class Hangman:
                 print(f"Good guess! {guess} is in the word.")
                 self.word_guessed[letter] = guess  
                 print(self.word_guessed)
+                self.num_letters -= 1 
+                print(f"you have {self.num_letters} letters left to guess")
 
         if guess not in self.word: 
                 print(f"Sorry, {guess} is not in the word.")
                 self.num_lives -= 1 
                 print(f"You have {self.num_lives} lives left.") 
-        self.num_letters -= 1 
-
+        
     def ask_for_input(self): 
         while True: 
             guess = input('Guess a letter:')
@@ -38,25 +37,21 @@ class Hangman:
             else:
                 self.check_guess(guess)
                 self.list_of_guesses.append(guess)
-
-
-#hangman = Hangman(word_list = 'cat car', num_lives = 5)
-#hangman = Hangman('car fish')
-#pprint(vars(hangman))
-
-#hangman.ask_for_input()
-
+            break 
 
 def play_game(word_list): 
-    num_lives = 5
-    game = Hangman 
-    game = game(word_list, num_lives)
+    game = Hangman(word_list, num_lives = 5)
+    #pprint(vars(game))
     while True: 
-        if num_lives == 0: 
-            print('You lost')
-        if num_letters > 0: 
-            ask_for_input()
-        if num_lives != 0 and num_letters == 0:
+        if game.num_lives == 0: 
+            print('You lost')            
+            break
+        elif game.num_letters > 0: 
+            game.ask_for_input()
+        elif game.num_lives > 0 and game.num_letters == 0:
             print('You have won the game!') 
+            break
+        else: 
+            print('something has gone wrong')
 
 play_game('car fish') 
