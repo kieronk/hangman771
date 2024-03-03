@@ -41,7 +41,7 @@ class Hangman:
 
 def play_game(word_list): 
     game = Hangman(word_list, num_lives = 5)
-    #pprint(vars(game))
+    #pprint(vars(game)) #this prints the word chosen for the purposes of debugging
     while True: 
         if game.num_lives == 0: 
             print('You lost')            
