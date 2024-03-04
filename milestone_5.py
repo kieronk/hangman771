@@ -14,10 +14,10 @@ class Hangman:
     
     def check_guess(self, guess):
         guess = guess.lower()
-        for letter in range(0, len(self.word)): 
-            if guess == self.word[letter]:
+        for index, letter in enumerate(self.word): 
+            if guess == self.word[index]:
                 print(f"Good guess! {guess} is in the word.")
-                self.word_guessed[letter] = guess  
+                self.word_guessed[index] = guess
                 print(self.word_guessed)
                 self.num_letters -= 1 
                 print(f"you have {self.num_letters} letters left to guess")
@@ -27,17 +27,16 @@ class Hangman:
                 self.num_lives -= 1 
                 print(f"You have {self.num_lives} lives left.") 
         
-    def ask_for_input(self): 
-        while True: 
-            guess = input('Guess a letter:')
-            if guess.isalpha() == False:
-                print("That's not a single letter, please enter a letter") 
-            elif guess in self.list_of_guesses:
-                print("You've already tried that letter!")
-            else:
-                self.check_guess(guess)
-                self.list_of_guesses.append(guess)
-            break 
+    def ask_for_input(self):  
+        guess = input('Guess a letter:')
+        if guess.isalpha() == False:
+            print("That's not a single letter, please enter a letter") 
+        elif guess in self.list_of_guesses:
+            print("You've already tried that letter!")
+        else:
+            self.check_guess(guess)
+            self.list_of_guesses.append(guess)
+            
 
 def play_game(word_list): 
     game = Hangman(word_list, num_lives = 5)
